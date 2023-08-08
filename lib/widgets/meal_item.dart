@@ -5,11 +5,9 @@ import 'package:transparent_image/transparent_image.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal, required this.onToggleFavorite});
+  const MealItem({super.key, required this.meal,});
 
   final Meal meal;
-  final void Function(Meal meal) onToggleFavorite;
-
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() + meal.complexity.name.substring(1);
   }
@@ -29,7 +27,7 @@ class MealItem extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (ctx) => MealDetailsScreen(meal: meal, onToggleFavorite: onToggleFavorite ,)));
+          Navigator.push(context, MaterialPageRoute(builder: (ctx) => MealDetailsScreen(meal: meal,)));
         },
         child: Stack(
           children: [

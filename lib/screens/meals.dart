@@ -6,12 +6,10 @@ import 'package:meals_app/widgets/meal_item.dart';
 import '../models/meal.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, this.title, required this.meals, required this.onToggleFavorite});
+  const MealsScreen({super.key, this.title, required this.meals,});
 
   final String? title;
   final List<Meal> meals;
-  final void Function(Meal meal) onToggleFavorite;
-
   @override
   Widget build(BuildContext context) {
     Widget content =  Center(child: Column(mainAxisSize: MainAxisSize.min,
@@ -27,7 +25,7 @@ class MealsScreen extends StatelessWidget {
     if (meals.isNotEmpty){
       content = ListView.builder(
         itemCount: meals.length,
-          itemBuilder: (ctx, index) => MealItem(meal: meals[index] , onToggleFavorite: onToggleFavorite,));
+          itemBuilder: (ctx, index) => MealItem(meal: meals[index] ,));
     }
 
     if (title == null){
