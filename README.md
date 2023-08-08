@@ -17,5 +17,6 @@ Things learned:
 - adding a Side drawer used to help in moving to different screens , and customizing it as needed.
 - Gaining full Control over going back (popping screens) by Using the WillPopScope widget.
 - returning Data when popping the Screen by using the .Pop which can be used in the place where data was pushed.
+- using Providers and the RiverPod package.
 
 Your Feedback will be more than welcome.
