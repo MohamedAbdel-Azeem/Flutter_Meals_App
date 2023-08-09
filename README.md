@@ -18,5 +18,6 @@ Things learned:
 - Gaining full Control over going back (popping screens) by Using the WillPopScope widget.
 - returning Data when popping the Screen by using the .Pop which can be used in the place where data was pushed.
 - using Providers and the RiverPod package.
+- Using implicit and explicit animations.
 
 Your Feedback will be more than welcome.
