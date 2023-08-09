@@ -6,13 +6,15 @@ import 'package:transparent_image/transparent_image.dart';
 import '../models/meal.dart';
 
 class MealDetailsScreen extends ConsumerWidget {
-  const MealDetailsScreen(
-      {super.key, required this.meal,});
+  const MealDetailsScreen({
+    super.key,
+    required this.meal,
+  });
 
   final Meal meal;
 
   @override
-  Widget build(BuildContext context , WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final favoriteMeals = ref.watch(favoritesMealProvider);
     final isFavorite = favoriteMeals.contains(meal);
     return Scaffold(
@@ -20,25 +22,44 @@ class MealDetailsScreen extends ConsumerWidget {
         title: Text(meal.title),
         actions: [
           IconButton(
-              onPressed: () {
-                  final isAdded = ref.read(favoritesMealProvider.notifier).toggleMealFavoriteStatus(meal);
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(isAdded? 'Marked as favorite!' : 'Removed from favorites!'),
-                    duration: const Duration(seconds: 1),
-                  ));
+            onPressed: () {
+              final isAdded = ref
+                  .read(favoritesMealProvider.notifier)
+                  .toggleMealFavoriteStatus(meal);
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(isAdded
+                    ? 'Marked as favorite!'
+                    : 'Removed from favorites!'),
+                duration: const Duration(seconds: 1),
+              ));
+            },
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween(
+                    begin: 0.6,
+                    end: 1.0,
+                  ).animate(animation),
+                  child: child,
+                );
               },
-              icon: Icon(isFavorite? Icons.star : Icons.star_border),
+              child: Icon(
+                isFavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isFavorite),
+              ),
+            ),
           )
         ],
       ),
       body: ListView(
         children: [
           Image.network(
-            meal.imageUrl,
-            height: 300,
-            fit: BoxFit.cover,
-          ),
+              meal.imageUrl,
+              height: 300,
+              fit: BoxFit.cover,
+            ),
           const SizedBox(
             height: 14,
           ),
